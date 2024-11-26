@@ -682,7 +682,7 @@ st.markdown(
     .title {
         text-align: center;
         font-weight: 700;
-        color: #FFC107;
+        color: black;
         margin-bottom: 2rem;
     }
     .section {
@@ -810,18 +810,35 @@ def main():
     """
     Main function to run the app.
     """
-    # Add a Home button at the top left
-    home_col, title_col = st.columns([0.1, 0.9])
+
+    # st.markdown("<h1 class='title'> Welcome to Movies4u </h1>", unsafe_allow_html=True)
+
+    # # Add a Home button at the top left
+    # home_col, title_col = st.columns([0.1, 0.9])
+    # with home_col:
+    #     if st.button("Home"):
+    #         st.session_state["selected_movie_name"] = None
+    #         st.experimental_rerun()
+            
+
+    home_col,str, title_col,str = st.columns([1,1.5,5,2])
+
+    str = '        '
+    # Add the Home button in the first column
     with home_col:
         if st.button("Home"):
             st.session_state["selected_movie_name"] = None
             st.experimental_rerun()
 
+    # Add the title in the second column
+    with title_col:
+        st.markdown("<h1 class='title'>Welcome to Movies4u</h1>", unsafe_allow_html=True)
+        
+
     with Main() as bot:
         bot.main_()
         new_df, movies, _ = bot.getter()
 
-        st.markdown("<h1 class='title'> Welcome to Movies4u </h1>", unsafe_allow_html=True)
 
         # Add vertical spacing for centering
         st.write("\n" * 1)
